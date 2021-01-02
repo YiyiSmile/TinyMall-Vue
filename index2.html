@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+               // var 声明的变量往往会越域
+       // let 声明的变量有严格局部作用域
+//         {
+//             var a = 1;
+//             let b = 2;
+//         }
+//         console.log(a);  // 1
+//         console.log(b);  // ReferenceError: b is not defined
+
+    // var 可以声明多次
+            // let 只能声明一次
+//         var m = 1
+//         var m = 2
+//         let n = 3
+// //         let n = 4
+//         console.log(m)  // 2
+//         console.log(n)  // Identifier 'n' has already been declared
+
+        // var 会变量提升
+        // let 不存在变量提升
+//         console.log(x);  // undefined
+//         var x = 10;
+//         console.log(y);   //ReferenceError: y is not defined
+//         let y = 20;
+
+        // let
+        // 1. 声明之后不允许改变
+                // 2. 一但声明必须初始化，否则会报错
+        const a = 1;
+        a = 3; //Uncaught TypeError: Assignment to constant variable.
+    </script>
+    <script>
+        var a = 10;
+        function test(){
+            console.log(a);
+            a=11;
+        }
+        test();
+        console.log(a);
+        //output:
+        // 10
+        // 11
+    </script>
+    <script>
+        var a = 10;
+        function test(){
+            console.log(a);
+            var a=11;
+        }
+        test();
+        //输出： undefined
+        //这是由于变量提升。var声明的变量有全局和函数内作用域两种，没有块级作用域。
+        //由于在test()内部后声明了var a = 11，浏览器会做预处理，将var a放到代码头部，其结果就是如下。所以会打印undefined错误
+        // function test(){
+        //     var a;
+        //     console.log(a);
+        //     var a=11;
+        // }
+    </script>
+    <script>
+        let b = 10;
+        function test(){
+            console.log(b);
+            let b=11;
+        }
+        test();
+        //Uncaught ReferenceError: Cannot access 'b' before initialization
+    </script>
+    <script>
+        let c = 10;
+        function test(){
+            console.log(c);
+            
+        }
+        test();
+        //output: 10
+    </script>
+    <script>
+        var d = 10;
+        var d = "20"
+        console.log(d)
+        //no issue for var variable to re-declare
+        let e = 10;
+        let e = 20;
+        //let variable can't be re-declared
+        //Uncaught SyntaxError: Identifier 'e' has already been declared
+    </script>
+    <script>
+        var f = 10;
+        {
+            console.log(f)
+            f=11;
+        }
+        console.log(f)
+        //output: 10, 11
+
+        let g = 11;
+        {
+            console.log(g)
+            g=12
+        }
+        console.log(g);
+        //output: 11,12, same as var.
+    </script>
+
+</body>
+</html>
